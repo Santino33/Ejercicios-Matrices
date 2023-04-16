@@ -1,5 +1,7 @@
 package view;
 
+import model.Chess.Piece;
+
 import java.util.Scanner;
 
 public class IoManager {
@@ -18,6 +20,10 @@ private Scanner scan = new Scanner(System.in);
             }
             System.out.println("");
         }
+    }
+
+    public void printChessTable(Piece[][] table){
+
     }
 
     public String readString(String message){

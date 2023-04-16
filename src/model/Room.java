@@ -2,6 +2,25 @@ package model;
 
 public class Room {
 
+
+    public static final int fil =0;
+    public static final int col =0;
+    private static int[][] matriz;
+
+
+
+    public Room(){
+        matriz = new int[fil][col];
+        for(int i =0; i < matriz.length; i++){
+            for(int j=0; j < matriz[0].length; j++){
+                matriz[i][j]=0;
+            }
+        }
+    }
+    public Room(int [][] matriz){
+        this.matriz = matriz;
+    }
+
     public String binarySumatory(int firstNumber, int secondNumber){
 
         int sumatory = firstNumber + secondNumber;
@@ -15,18 +34,27 @@ public class Room {
             sumatory /= 2;
         }
         return binario;
-
-
     }
 
-    private int cifras(int numero){
-        int counter = 0;
-        while(numero>=1){
-            numero = numero/10;
-            counter++;
+
+
+    public int numberStringtoInt(String numberString){
+        int numberInt = 0;
+
+        for(int i = 0; i < numberString.length();i++){
+            numberInt = numberInt*10 + numberString.charAt(i)-'0';
         }
-        return counter;
+        return numberInt;
     }
+    public String fillBinarires(String binary){
+        String binaryFilled="";
+        for(int i =0; i < 8-binary.length(); i++){
+            binaryFilled += "0";
+        }
+        binaryFilled += binary;
+        return binaryFilled;
+    }
+
     public String decimalToBinary(int decNumber){
         String binario= "";
         int resto = 0;
@@ -38,7 +66,18 @@ public class Room {
         }
         return binario;
     }
-
+    public static int exponent(int base, int exponente) {
+        int resultado = 1;
+        for (int i = 0; i < exponente; i++) {
+            resultado *= base;
+        }
+        return resultado;
+    }
+    public int charToInt(char character){
+        int numberInt =0;
+        numberInt = numberInt*10 + character-'0';
+        return numberInt;
+    }
     //EJERCICIO MATRIZ MAGICA
     public boolean magicalMatrix(int[][] matrix){
         boolean isMagic = false;
@@ -75,14 +114,77 @@ public class Room {
         if(principalDiagonal == reference) counter++;
         if (secondaryDiagonal == reference) counter++;
 
-        System.out.println(counter);
-        System.out.println(((matrix.length) * 2 )+2);
+        
         if(counter == ((matrix.length) * 2 )+2) isMagic = true;
         return isMagic;
     }
 
-    public int matrixSize(int[][] matrix){
-        return matrix.length;
+    //
+
+    //****
+    // EJERCICIOS HECHOS EN CLASE
+    public String getMatrizString(int [][] matriz){
+        String txt ="";
+        for(int i =0; i < matriz.length; i++){
+            for(int j =0; j<matriz[0].length; j++){
+                txt += matriz[i][j] + " ";
+            }
+            txt += "\n";
+        }
+        return txt;
+    }
+
+
+    public static int[][] getMatriz() {
+        return matriz;
+    }
+
+    public String getPrimaryDiagonal(int [][] matrix){
+        String principalDiagonal="";
+
+        for (int i = 0; i < matrix.length; i++) {
+            principalDiagonal += matrix[i][i];
+            principalDiagonal += " ";
+        }
+        return principalDiagonal;
+    }
+
+    public String getSecondaryDiagonal(int [][] matrix){
+        String secondaryDiagonal="";
+        for (int i = 0; i < matrix.length; i++) {
+            secondaryDiagonal += matrix[i][matrix.length - i - 1] +" ";
+        }
+        return secondaryDiagonal;
+    }
+
+    public int getSumSuperiorTriangular(int [][] matrix){
+        int sumatory=0;
+        for(int i=0; i < matrix.length; i++){
+            for(int j =0; j<matrix.length; j++){
+                if(i>j) sumatory += matrix[i][j];
+            }
+        }
+        return sumatory;
+    }
+
+    public int getSumInferiorTriangular(int [][] matrix){
+        int sumatory=0;
+        for(int i=0; i < matrix.length; i++){
+            for(int j =0; j<matrix.length; j++){
+                if(i<j) sumatory += matrix[i][j];
+            }
+        }
+        return sumatory;
+    }
+
+    
+
+
+
+
+
+    public void setMatriz(int[][] matriz) {
+        this.matriz = matriz;
     }
 
 
