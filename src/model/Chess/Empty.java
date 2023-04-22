@@ -1,15 +1,12 @@
 package model.Chess;
 
-public class Empty extends Piece{
-    protected int fil;
-    protected int col;
-
-    char Symbol = '.';
-
+public class Empty extends Piece {
     public Empty() {
+        super(false);
     }
 
-    public char getSymbol(){
-        return Symbol;
+    @Override
+    public char getSymbol() {
+        return '-';
     }
 }

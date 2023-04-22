@@ -18,7 +18,7 @@ public class Table {
         //Posicionar Caballo aleatoriamente
         int horseRow = (int) (Math.random() *8);
         int horseCol = (int) (Math.random() *8);
-        this.pieces[horseRow][horseCol] = new Horse();
+        this.pieces[horseRow][horseCol] = new Horse(true);
 
         //Posicionar fichas aliadas y enemigas aleatoriamente
         for(int i =0; i <4; i++){
@@ -27,12 +27,17 @@ public class Table {
                 allyRow = (int) (Math.random() *8);
                 allyCol = (int) (Math.random() *8);
             } while(!(this.pieces[allyRow][allyCol] instanceof  Empty));
+            this.pieces[allyRow][allyCol] = new OtherPiece(true);
             do {
                 enemyRow = (int) (Math.random() *8);
                 enemyCol = (int) (Math.random() *8);
             } while (!(this.pieces[enemyRow][enemyCol] instanceof Empty));
-            this.pieces[enemyRow][enemyCol] = new OtherPiece();
+            this.pieces[enemyRow][enemyCol] = new OtherPiece(false);
         }
+    }
+
+    public Piece getPiece(int Row, int Col) {
+        return this.pieces[Row][Col];
     }
 
 

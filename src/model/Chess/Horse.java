@@ -4,20 +4,16 @@ public class Horse extends Piece{
     protected String Color = "";
     char Symbol = 'H';
 
-    public Horse(int fil, int col) {
-        super(fil, col);
+    public Horse(boolean isAlly) {
+    super (isAlly);
     }
 
-    public Horse(){
+    public Horse() {
+        super(true);
     }
 
-
-    public int getX(){
-        return this.fil;
+    @Override
+    public char getSymbol() {
+        return Symbol;
     }
-    public int getY(){
-        return this.col;
-    }
-
-
 }
