@@ -2,12 +2,14 @@ package model.Chess;
 
 public class Horse extends Piece{
     protected String Color = "";
-    char horseSymbol = 'H';
+    char Symbol = 'H';
 
     public Horse(int fil, int col) {
         super(fil, col);
     }
 
+    public Horse(){
+    }
 
 
     public int getX(){
@@ -16,5 +18,6 @@ public class Horse extends Piece{
     public int getY(){
         return this.col;
     }
+
 
 }

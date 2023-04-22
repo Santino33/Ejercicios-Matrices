@@ -4,14 +4,18 @@ import java.util.Random;
 
 public class Piece {
     protected int fil;
+
+    public Piece() {
+    }
+
     protected int col;
     char emptySymbol = '.';
     char horseSymbol = 'H';
-    char otherPiece = '*';
+    char otherPieceSymbol = '*';
 
-    public Piece(int fila, int columna) {
-        this.fil = fila;
-        this.col = columna;
+    public Piece(int fil, int col) {
+        this.fil = fil;
+        this.col = col;
     }
 
     public void movePiece(int newFil, int newCol) {
@@ -26,5 +30,14 @@ public class Piece {
         position[0] = random.nextInt(8)+1;
         position[1] = random.nextInt(8)+1;
         return position;
+    }
+
+
+
+    public int getX(){
+        return this.fil;
+    }
+    public int getY(){
+        return this.col;
     }
 }
