@@ -18,7 +18,7 @@ public class Table {
         //Posicionar Caballo aleatoriamente
         int horseRow = (int) (Math.random() *8);
         int horseCol = (int) (Math.random() *8);
-        this.pieces[horseRow][horseCol] = new Horse(true);
+        this.pieces[horseRow][horseCol] = new Horse(true, horseRow, horseCol);
 
         //Posicionar fichas aliadas y enemigas aleatoriamente
         for(int i =0; i <4; i++){
@@ -35,10 +35,33 @@ public class Table {
             this.pieces[enemyRow][enemyCol] = new OtherPiece(false);
         }
     }
+    public int[] getHorsePosition(Table table){
+        int [] position = new int[2];
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 8; j++){
+                if(this.pieces[i][j] instanceof Horse){
+                    position[0] = i;
+                    position[1] = j;
+                }
+            }
+        }
+        return position;
+    }
+
+    public boolean isValidMove(int horseRow, int horseCol, int newRow, int newCol){
+        if(newRow > 7 || newCol > 7 || newRow <0 || newCol < 0)
+            return false;
+
+        int diffX =Math.abs(horseRow - newRow);
+        int diffY =Math.abs(horseCol - newCol);
+        return (diffX == 1 && diffY == 2) || (diffX == 2 && diffY == 1);
+    }
 
     public Piece getPiece(int Row, int Col) {
         return this.pieces[Row][Col];
     }
+
+
 
 
     /*

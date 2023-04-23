@@ -9,9 +9,10 @@ import java.util.Scanner;
 public class IoManager {
 //atributos
 private Scanner scan = new Scanner(System.in);
-    private Horse Horse;
+    Horse horse = new Horse();
     private OtherPiece OtherPiece;
     private Empty Empty;
+
 
     //metodos
     public void showMessage (String message){
@@ -35,43 +36,86 @@ private Scanner scan = new Scanner(System.in);
             System.out.println("");
         }
     }
+/*
+    public void printChessTable(Table table){
+        int[] horsePosition;
+        horsePosition = table.getHorsePosition(table);
 
-    public void printChessTable(Piece[][] table){
-        System.out.println(" ");
+        System.out.print("  ");
         for(int i =0; i<8; i++){
-            System.out.println((char) ('a' +1) + "");
+            System.out.print((char) ('a' +i) + " ");
         }
-        System.out.println(" ");
+        System.out.println();
         for (int i =0; i<8; i++){
-            System.out.println((8 - i) +"");
+            System.out.print((8 - i) +" ");
             for(int j = 0; j <8; j++){
-                System.out.println(getSymbol(table, i, j));
+                Piece piece = table.getPiece(i, j);
+                //Evalua si la posicion actual es una opcion para el salto del caballo y si es valida
+                if(table.isValidMove(horsePosition[0], horsePosition[1], horse.leftUpMove(horsePosition[0], horsePosition[1]))) {
+                    printHorseMoves(table, i, j);
+                    System.out.print("%");
+                }
+                if(table.isValidMove(horsePosition[0], horsePosition[1], horse.leftDownMove(horsePosition[0], horsePosition[1]))) printHorseMoves(table, i, j);
+                if(table.isValidMove(horsePosition[0], horsePosition[1], horse.rightDownMove(horsePosition[0], horsePosition[1]))) printHorseMoves(table, i, j);
+                if(table.isValidMove(horsePosition[0], horsePosition[1], horse.rightUpMove(horsePosition[0], horsePosition[1]))) printHorseMoves(table, i, j);
+                if(table.isValidMove(horsePosition[0], horsePosition[1], horse.downLeftMove(horsePosition[0], horsePosition[1]))) printHorseMoves(table, i, j);
+                if(table.isValidMove(horsePosition[0], horsePosition[1], horse.downRightMove(horsePosition[0], horsePosition[1]))) printHorseMoves(table, i, j);
+                if(table.isValidMove(horsePosition[0], horsePosition[1], horse.upRightMove(horsePosition[0], horsePosition[1]))) printHorseMoves(table, i, j);
+                if(table.isValidMove(horsePosition[0], horsePosition[1], horse.upLeftMove(horsePosition[0], horsePosition[1]))) printHorseMoves(table, i, j);
+
+
+                System.out.print(piece.getSymbol() + " ");
             }
             System.out.println(8 - i);
         }
-        System.out.println(" ");
+        System.out.print("  ");
         for(int i = 0; i<8; i++){
-            System.out.println((char) ('a' + i) + " ");
+            System.out.print((char) ('a' + i) + " ");
+        }
+        System.out.println();
+    }
+ */
+
+    //METODOS IMPRESION DE TABLERO AJEDREZ
+    public void printChessTable(Table table){
+        int[] horsePosition = table.getHorsePosition(table);
+        System.out.print("  ");
+        for(int i =0; i<8; i++){
+            System.out.print((char) ('a' +i) + " ");
+        }
+        System.out.println();
+        for (int i =0; i<8; i++){
+            System.out.print((8 - i) +" ");
+            for(int j = 0; j <8; j++){
+                Piece piece = table.getPiece(i, j);
+                if (table.isValidMove(horsePosition[0], horsePosition[1], i, j)) {
+                    printHorseMoves(table, i, j);
+                } else {
+                    System.out.print(piece.getSymbol() + " ");
+                }
+            }
+            System.out.println(8 - i);
+        }
+        System.out.print("  ");
+        for(int i = 0; i<8; i++){
+            System.out.print((char) ('a' + i) + " ");
         }
         System.out.println();
     }
 
-    /*
-    public void printChessTable1(Table table){
-        char [][] tableChar = new char[8][8];
-        for(int i =0; i < 8; i++){
-            for (int j=0; j< 8; j++){
-                if(table.getPieceAtPosition(i,j) == Horse) tableChar[i][j] = 'H';
-                if(table.getPieceAtPosition(i,j) == OtherPiece) tableChar[i][j] = '*';
-                if(table.getPieceAtPosition(i,j) == Empty) tableChar[i][j] = '.';
-            }
+    public void printHorseMoves(Table table, int row, int col) {
+        Piece piece = table.getPiece(row, col);
+        if (piece instanceof Empty) {
+            System.out.print("X ");
+        } else if (piece.isAlly()) {
+            System.out.print(piece.getSymbol() + " ");
+        } else {
+            System.out.print("O ");
         }
-        printCharMatrix(tableChar);
     }
 
-     */
-
-
+    
+    //METODOS GRAFICOS Y DE LECTURA
     public void showGraphicMessage(String message){
         JOptionPane.showMessageDialog(null, message);
     }

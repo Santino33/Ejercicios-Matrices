@@ -40,6 +40,7 @@ io = new IoManager();
         io.showMessage("fijas: "+ room.getFijas(combination, keyNumber));
         io.showMessage("num aleatorio: "+room.generarVectorJugador());
         io.showMessage("nuevo numero: "+room.borrarCifras(92500047, 4));
+
     }
 
 }
