@@ -233,6 +233,7 @@ public class Room {
 
 
 
+
     public void setMatriz(int[][] matriz) {
         this.matriz = matriz;
     }

@@ -10,7 +10,7 @@ public class Run {
     public static void main (String [] args){
         Control control = new Control();
         Game game = new Game();
-        game.run();
+        game.runChess();
         //control.init();
 
        /* */
