@@ -1,6 +1,7 @@
 package controller;
 import view.IoManager;
 import model.Chess.Table;
+import model.Simulation.Pool;
 
 public class Game {
     private IoManager io;
@@ -17,6 +18,8 @@ public class Game {
         io.printChessTable(chessTable);
 
     }
+
+
 
 
 

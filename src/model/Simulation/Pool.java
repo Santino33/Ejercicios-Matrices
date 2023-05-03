@@ -1,25 +1,52 @@
 package model.Simulation;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Pool {
 
     private int[][] pool;
-    private int[] ballPosition = new int[2];
+    private int [] ballPosition = new int[2];
 
-    public Pool() {
+
+    public Pool(){
         this.pool = new int[5][5];
         Random rand = new Random();
 
-        for (int i = 0; i < pool.length; i++) {
-            for (int j = 0; j < pool[i].length; j++) {
+        for(int i = 0; i < pool.length; i++){
+            for(int j = 0; j < pool[i].length; j++){
                 int bound = 6;
                 pool[i][j] = rand.nextInt(bound);
             }
         }
     }
 
-    public void dropBall() {
+    public void playGame(){
+        String moves = "";
+        System.out.println("... play, "+getHeight(ballPosition[0], ballPosition[1]));
+
+
+        while(getHeight(ballPosition[0], ballPosition[1]) != 0){
+            dropBall();
+            System.out.println("La posicion de la pelota es "+ballPosition[0]+" "+ballPosition[1]);
+            System.out.println("La pelota esta en la altura " +getHeight(ballPosition[0], ballPosition[1]));
+            printPool(pool);
+            uploadBallPosition();
+            moves += saveMoves(moves);
+            System.out.println(moves);
+        }
+    }
+
+    public String saveMoves(String moves){
+        moves += ballPosition[0];
+        moves += ballPosition[1];
+        return moves;
+    }
+    public void uploadBallPosition(){
+        ballPosition = getNewPosition();
+    }
+
+    public void dropBall(){
         Random rand = new Random();
         int x = rand.nextInt(5);
         int y = rand.nextInt(5);
@@ -27,100 +54,127 @@ public class Pool {
         ballPosition[1] = y;
     }
 
-    public void printPool(int[][] pool) {
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
+    private void printPool(int[][] pool){
+        for(int i =0; i < 5; i++){
+            for(int j = 0; j < 5; j++){
                 System.out.print(pool[i][j] + " ");
             }
             System.out.println("");
         }
     }
 
-    public static void main(String[] args) {
-        int[][] piscina = new int[5][5];
-        Random rand = new Random();
-        // Llenar la matriz con valores aleatorios entre 0 y 5
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
-                piscina[i][j] = rand.nextInt(6);
-            }
-        }
-        // Imprimir la matriz
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
-                System.out.print(piscina[i][j] + " ");
-            }
-            System.out.println();
-        }
-        int x = rand.nextInt(5); // Coordenada x de inicio
-        int y = rand.nextInt(5); // Coordenada y de inicio
-        System.err.println(x + "," + y);
-        System.out.println("Coordenadas de la ruta de la esfera:");
-        // Simular la ruta de la esfera
-        while (piscina[y][x] > 0) {
-            int lowestHeight = 6;
-            int newY = y;
-            int newX = x;
-            // Buscar la baldosa adyacente con la altura más baja
-            if (x > 0 && piscina[y][x - 1] < lowestHeight && piscina[y][x - 1] < piscina[y][x]) {
-                lowestHeight = piscina[y][x - 1];
-                newX = x - 1;
-            }
-            if (x < 4 && piscina[y][x + 1] < lowestHeight && piscina[y][x + 1] < piscina[y][x]) {
-                lowestHeight = piscina[y][x + 1];
-                newX = x + 1;
-            }
-            if (y > 0 && piscina[y - 1][x] < lowestHeight && piscina[y - 1][x] < piscina[y][x]) {
-                lowestHeight = piscina[y - 1][x];
-                newY = y - 1;
-            }
-            if (y < 4 && piscina[y + 1][x] < lowestHeight && piscina[y + 1][x] < piscina[y][x]) {
-                lowestHeight = piscina[y + 1][x];
-                newY = y + 1;
-            }
-            // Si la baldosa adyacente tiene la misma altura que la actual, elegir
-            // aleatoriamente una dirección hacia la que moverse
-            if (newY == y && newX == x) {
-                int[] directions = new int[4];
-                int numDirections = 0;
-                if (x > 0 && piscina[y][x - 1] == piscina[y][x]) {
-                    directions[numDirections] = 0;
-                    numDirections++;
-                }
-                if (x < 4 && piscina[y][x + 1] == piscina[y][x]) {
-                    directions[numDirections] = 1;
-                    numDirections++;
-                }
-                if (y > 0 && piscina[y - 1][x] == piscina[y][x]) {
-                    directions[numDirections] = 2;
-                    numDirections++;
-                }
-                if (y < 4 && piscina[y + 1][x] == piscina[y][x]) {
-                    directions[numDirections] = 3;
-                    numDirections++;
-                }
-                int direction = directions[rand.nextInt(numDirections)];
-                switch (direction) {
-                    case 0:
-                        newX = x - 1;
-                        break;
-                    case 1:
-                        newX = x + 1;
-                        break;
-                    case 2:
-                        newY = y - 1;
-                        break;
-                    case 3:
-                        newY = y + 1;
-                        break;
-                }
-            }
-            // Mover la esfera a la baldosa adyacente con la altura más baja y mostrar las
-            // coordenadas
-            x = newX;
-            y = newY;
-            System.out.println("(" + x + "," + y + ")");
-        }
-        System.out.println("La esfera ha llegado al fondo de la piscina.");
+
+
+    private boolean isOnBottom(){
+        boolean isOnbottom = false;
+        if (getHeight(ballPosition[0],ballPosition[1]) == 0) isOnbottom = true;
+
+        return isOnbottom;
     }
+
+
+    private int[] getNewPosition() {
+        ArrayList<Integer> closeHeights = new ArrayList<Integer>();
+        ArrayList<int[]> posiblePositions = new ArrayList<int[]>();
+
+        int nextHeight = 0;
+        int[] newPosition = new int[2];
+        boolean isOnBottom = false;
+
+        closeHeights = getCloseHeights();
+        nextHeight = getNextHeight(closeHeights);
+        System.out.println("Las alturas cercanas son: "+closeHeights);
+        System.out.println("La siguiente altura es: "+nextHeight);
+        if (nextHeight == -1){
+            isOnBottom = true;
+            newPosition = ballPosition;
+        }
+
+        //Tomar las posiciones de los posibles alturas de la piscina si la bola aun no esta en el fondo
+        if (isOnBottom){
+            for (int i = ballPosition[0]-1; i <= ballPosition[0] + 1; i++){
+                for (int j = ballPosition[1] - 1; j <= ballPosition[1] + 1; j++){
+                    if (validatePosition(i, j)){
+                        if(getHeight(i, j) == nextHeight){
+                            int[] position = {i, j};
+                            posiblePositions.add(position);
+                        }
+                    }
+
+                }
+            }
+        }
+        newPosition = chooseRandomPositions(posiblePositions);
+        //Elegir aleatoriamente cual posicion escoger
+        return newPosition;
+    }
+
+    public int[] chooseRandomPositions(ArrayList<int[]> positions){
+        Random rand = new Random();
+        int next = rand.nextInt(positions.size());
+        return positions.get(next);
+    }
+
+    public ArrayList getCloseHeights() {
+        ArrayList<Integer> closeHeights = new ArrayList<Integer>();
+        for (int i = ballPosition[0]-1; i <= ballPosition[0] + 1; i++){
+            for (int j = ballPosition[1] - 1; j <= ballPosition[1] + 1; j++){
+                closeHeights.add(getHeight(i, j));
+            }
+        }
+        return closeHeights;
+    }
+
+    public int getTimesHeightRepited(ArrayList<Integer> closeHeights, int height){
+        int timesRepited = 0;
+        for (int i = 0; i < closeHeights.size(); i++){
+            if(height == closeHeights.get(i)) timesRepited++;
+        }
+        return timesRepited;
+    }
+    public int getNextHeight(ArrayList<Integer> closeHeights){
+        int nextHeight = -1;
+        for(int i = 0; i < closeHeights.size(); i++){
+            if((closeHeights.get(i) < getHeight(ballPosition[0],ballPosition[1])) && closeHeights.get(i) > nextHeight){
+                nextHeight = closeHeights.get(i);
+            }
+        }
+        return nextHeight;
+    }
+
+    private int getHeight(int x, int y){
+        int cell = 0;
+        for (int i = 0; i < 5; i++){
+            for (int j = 0; j < 5; j++){
+                if(i == x && j == y){
+                    cell = pool[i][j];
+                }
+            }
+        }
+        return cell;
+    }
+
+
+    private boolean validatePosition(int x, int y){
+        boolean isValid = false;
+        if((x < 0 || x > 4 || y < 0 || y > 4) && (x!=ballPosition[0] && y!=ballPosition[1])){
+            isValid = false;
+        }else{
+            isValid = true;
+        }
+        return isValid;
+    }
+
+    //Metodo que diga si una posicion en la piscina es valida
+    /*
+    public boolean isValidPosition(int[] position){
+
+    }
+
+    //Metodo que evalue desde la posicion mas alta, la siguiente mas baja
+    public int[] getNextPosition(Pool pool){
+
+    }
+
+     */
 }

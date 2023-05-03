@@ -231,6 +231,41 @@ public class Room {
         return numero;
     }
 
+    public int[][] getMatrizTranspuesta(int [][] matriz){
+        int [][] result = new int[matriz[0].length][matriz.length];
+        for(int i=0; i<result.length; i++){
+            for (int j =0; j<result[0].length;j++){
+                result[i][j] = matriz[j][i];
+            }
+        }
+        return result;
+    }
+
+    public int sumatoriaMatriz(int [][] matriz){
+        int suma=0;
+        for(int i=0; i<matriz.length; i++){
+            for (int j =0; j<matriz[0].length; j++){
+                suma+= matriz[i][j];
+            }
+        }
+        return suma;
+    }
+
+    public int[][] sumaDeMatrices(int [][] matriz1, int [][] matriz2) {
+        int[][] result = new int[matriz1.length][matriz1[0].length];
+
+        for (int i=0; i<matriz1.length; i++){
+            for (int j=0; j<matriz1[0].length;j++){
+                result[i][j] = matriz1[i][j] + matriz2[i][j];
+            }
+        }
+        return result;
+    }
+
+    public int[][] multiplicacionDeMatrices(int [][] matriz1, int [][] matriz2){
+        
+        return result;
+    }
 
 
 
