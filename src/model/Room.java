@@ -262,9 +262,46 @@ public class Room {
         return result;
     }
 
-    public int[][] multiplicacionDeMatrices(int [][] matriz1, int [][] matriz2){
-        
-        return result;
+    public int[][] multiplicacionDeMatrices(int [][] matrizA, int [][] matrizB){
+        int [][] resultado = new int[matrizA.length][matrizB[0].length];
+        int posX =0;
+        int posY =0;
+
+        for (int i=0; i<matrizA.length; i++){
+            for (int j=0; j<matrizB[0].length; j++){
+                int suma = 0;
+                for (int k =0; k<matrizB.length; k++){
+                    suma += matrizA[i][k] * matrizB[k][j];
+                }
+                resultado[posX][posY] = suma;
+                posY++;
+                if (posY == resultado[0].length){
+                    posX++;
+                    posY = 0;
+                }
+            }
+        }
+        System.out.println("El tamaño del resultado es: "+resultado.length+ " "+resultado[0].length);
+
+        return resultado;
+    }
+
+    public int[][] multiplicacionDeMatricesGPT(int[][] matrizA, int[][] matrizB) {
+        // validar que las matrices sean multiplicables
+        if (matrizA[0].length != matrizB.length) {
+            throw new IllegalArgumentException("No se puede multiplicar estas matrices");
+        }
+        // crear matriz resultado con el numero de filas de la matriz A y el numero de columnas de la matriz B
+        int[][] resultado = new int[matrizA.length][matrizB[0].length];
+        // multiplicar los elementos de las matrices
+        for (int i = 0; i < matrizA.length; i++) {
+            for (int j = 0; j < matrizB[0].length; j++) {
+                for (int k = 0; k < matrizA[0].length; k++) {
+                    resultado[i][j] += matrizA[i][k] * matrizB[k][j];
+                }
+            }
+        }
+        return resultado;
     }
 
 
