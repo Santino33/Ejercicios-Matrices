@@ -1,0 +1,47 @@
+[33mcommit 36ca3a1e819a63215cbc26733bb4e616d71ab3e1[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: Santino33 <davidnaranjo330@gmail.com>
+Date:   Wed May 3 10:17:14 2023 -0500
+
+    Termino metodo multiplicacion de matrices con otra version de chatGPT
+
+[33mcommit 51e051e8c7188b9e5352b3a7d659431e1196cae2[m
+Author: Santino33 <davidnaranjo330@gmail.com>
+Date:   Wed May 3 08:44:17 2023 -0500
+
+    En proceso ejercicio piscina y agrego ejercicios basicos de matrices
+
+[33mcommit 79cc6719e7bfcba5760a49c8b5fe3c5ddf1760ac[m
+Author: Santino33 <davidnaranjo330@gmail.com>
+Date:   Thu Apr 27 14:52:45 2023 -0500
+
+    Ejercicio de la piscina con version de chatGTP
+
+[33mcommit 89b51698338925c18b3f213b2d43e76544d12a1c[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: Santino33 <davidnaranjo330@gmail.com>
+Date:   Sun Apr 23 12:47:56 2023 -0500
+
+    Ejercicio ajedrez terminado, reemplazamos metodo printChessTable y tambien printHorseMoves, junto con la logica de los movimientos
+
+[33mcommit 431c078ddba869e82640e1c44f5dcc061f2e7420[m
+Author: Santino33 <davidnaranjo330@gmail.com>
+Date:   Sat Apr 22 09:59:07 2023 -0500
+
+    Termino metodo PrintTable, aun falta la logica de los movimientos del caballo
+
+[33mcommit 1cecfbd941ddb4c55637cda947aa184252302811[m
+Author: Santino33 <davidnaranjo330@gmail.com>
+Date:   Sat Apr 22 09:14:19 2023 -0500
+
+    Haciendo correcciones, nuevo metodo constructor de Table
+
+[33mcommit 391d80215d4b8a3bd1aac0267596c7aa568b565d[m
+Author: Santino33 <davidnaranjo330@gmail.com>
+Date:   Sun Apr 16 11:34:00 2023 -0500
+
+    Ejercicios nuevos y empiezo ejercicio del movimiento del caballo
+
+[33mcommit 1468bebeaf8aa22db0bad43d88cad2062774f007[m
+Author: Santino33 <davidnaranjo330@gmail.com>
+Date:   Thu Apr 13 21:20:47 2023 -0500
+
+    Termino los primeros 2 ejercicios

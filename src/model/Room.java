@@ -304,7 +304,26 @@ public class Room {
         return resultado;
     }
 
+//ejercicio rotar matriz hacia la izquierda las veces que se den por parametro
+    public int[][] rotarMatriz(int[][] matriz, int turns){
+        int[][] resultado = matriz;
+        while (turns != 0) {
+            resultado = reverseMatriz(resultado);
+            resultado = getMatrizTranspuesta(resultado);
+            turns--;
+        }
+        return resultado;
+    }
 
+    public int[][] reverseMatriz(int[][] matriz){
+        int[][] resultado = new int[matriz.length][matriz.length];
+        for (int i =0; i<matriz.length;i++){
+            for (int j =0; j<matriz.length ; j++){
+                resultado[i][j] = matriz[i][matriz.length-j-1];
+            }
+        }
+        return resultado;
+    }
 
     public void setMatriz(int[][] matriz) {
         this.matriz = matriz;

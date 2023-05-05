@@ -22,7 +22,7 @@ io = new IoManager();
     int[][] matriz2 = {{10, 8, -4, 0}, {1, 3, 20, 11}, {15, 4, 7, 9}, {18, 2, 1, -4}};
     int[][] matriz3 = {{1, 2}, {3, 4}, {5, 6}, {7, -2}};
 
-    int[][] matriz5 = {{5, 3}, {2, 9}, {2, 4}};
+    int[][] matriz5 = {{1,2, 3}, {4,5, 6}, {7,8, 9}};
     int[][] matriz6 = {{1, 5, 3}, {5, 3, 3}};
     Table chessTable = new Table();
     int [] combination = {5, 8, 1, 6};
@@ -50,9 +50,14 @@ io = new IoManager();
         System.out.println("");
         //io.printMatrix(room.sumaDeMatrices(matriz, matriz4));
         System.out.println("");
-        io.printMatrix(room.multiplicacionDeMatrices(matriz5, matriz6));
+        //io.printMatrix(room.multiplicacionDeMatrices(matriz5, matriz6));
         System.out.println("");
-        io.printMatrix(room.multiplicacionDeMatricesGPT(matriz5, matriz6));
+        //io.printMatrix(room.multiplicacionDeMatricesGPT(matriz5, matriz6));
+        io.printMatrix(matriz5);
+        System.out.println("");
+        io.printMatrix(room.reverseMatriz(matriz5));
+        System.out.println("");
+        io.printMatrix(room.rotarMatriz(matriz5, 2));
     }
 
 }
